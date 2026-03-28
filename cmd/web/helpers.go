@@ -13,6 +13,7 @@ func (app *application) serverErorr(w http.ResponseWriter, r *http.Request, err 
 	)
 
 	app.logger.Error(err.Error(), "method", method, "uri", uri, "trace", trace)
+	http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 }
 
 func (app *application) clientError(w http.ResponseWriter, status int) {
